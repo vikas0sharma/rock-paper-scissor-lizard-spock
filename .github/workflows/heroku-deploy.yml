@@ -10,11 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "rock-paper-scissor-lizard-spoc" #Must be unique in Heroku
-          heroku_email: "mailbox.viksharma@gmail.com"
-          usedocker: true
-        env:
-          ASPNETCORE_ENVIRONMENT: prod
+      - name: HerokuLogin
+        run : machine api.heroku.com login mailbox.viksharma@gmail.com password ${{secrets.HEROKU_API_KEY}}
