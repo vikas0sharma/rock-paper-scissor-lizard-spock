@@ -11,5 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: HerokuLogin
-        run : cat >~/.netrc <<EOF machine api.heroku.com login mailbox.viksharma@gmail.com password ${{secrets.HEROKU_API_KEY}} EOF
+        run : cat >~/.netrc <<EOF 
+            machine api.heroku.com login mailbox.viksharma@gmail.com password ${{secrets.HEROKU_API_KEY}}
+            EOF
         
