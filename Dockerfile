@@ -15,6 +15,11 @@ RUN apt-get update && apt-get install -y nodejs
 COPY ["RockPaperScissorLizardSpock.csproj", "."]
 RUN dotnet restore "./RockPaperScissorLizardSpock.csproj"
 COPY . .
+
+COPY ./ClientApp/. /app/publish/ClientApp/.
+WORKDIR "/app/publish/ClientApp/."
+RUN npm install && npm run build
+
 WORKDIR "/src/."
 RUN dotnet build "RockPaperScissorLizardSpock.csproj" -c Release -o /app/build
 
