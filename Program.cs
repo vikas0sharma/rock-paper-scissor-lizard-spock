@@ -22,10 +22,10 @@ namespace RockPaperScissorLizardSpock
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     // added for Heroku only remove it if running locally
-                    webBuilder.ConfigureKestrel(serverOptions =>
-                    {
-                        serverOptions.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
-                    });
+                    // webBuilder.ConfigureKestrel(serverOptions =>
+                    // {
+                    //     serverOptions.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
+                    // });
 
                     webBuilder.UseStartup<Startup>();
                 });
