@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RockPaperScissorLizardSpock.Infrastructure.Database;
+using StackExchange.Redis;
 
 namespace RockPaperScissorLizardSpock
 {
@@ -18,7 +20,18 @@ namespace RockPaperScissorLizardSpock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Redis Configuration
+            services.AddSingleton<ConnectionMultiplexer>(sp =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration["RedisConnectionString"], true);
+                //configuration.Ssl = true;
+                
 
+                configuration.ResolveDns = true;
+
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+            services.AddScoped<IGameRepository, GameRepository>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -34,6 +47,7 @@ namespace RockPaperScissorLizardSpock
                     .WithOrigins("https://localhost:5001");
                 });
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

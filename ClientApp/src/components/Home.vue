@@ -1,7 +1,11 @@
 <template>
   <form class="form">
     <div class="rules__form">
-      <img src="../resources/images/main.png" />
+      <button class="red" type="button">
+        <span class="material-icons">gamepad</span>
+        <span class="btn-icon">Play</span>
+      </button>
+      <img class="image" src="../resources/images/main.png" />
       <h1>Rules</h1>
       <label class="rules__text">
         "Scissors decapitate Scissors cuts paper, paper covers rock, rock
@@ -39,9 +43,20 @@ export default Vue.extend({
   -webkit-appearance: none;
   padding: 2em;
 }
-.rules__text:hover{
-	color: #ae1100;
+.rules__text:hover {
+  color: #ae1100;
   box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
 }
-
+.btn-icon {
+  font-size: 25px;
+}
+.image {
+    margin: 40px;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 </style>

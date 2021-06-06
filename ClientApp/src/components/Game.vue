@@ -1,24 +1,29 @@
 <template>
-  <div class="game">
-    <div class="player">Vikas</div>
-    <div class="game__options">
-      <div class="option neo-btn">
-        <img src="../resources/images/rock-emoji.png" height="100" />
+  <div class="container">
+    <div class="game">
+      <div class="player">Vikas</div>
+      <div class="game__options">
+        <div class="option neo-btn">
+          <img src="../resources/images/rock-emoji.png" height="100" />
+        </div>
+        <div class="option neo-btn">
+          <img src="../resources/images/pen-paper-icon-1.png" height="100" />
+        </div>
+        <div class="option neo-btn">
+          <img src="../resources/images/icon-scissors-60.png" height="100" />
+        </div>
       </div>
-      <div class="option neo-btn">
-        <img src="../resources/images/pen-paper-icon-1.png" height="100" />
-      </div>
-      <div class="option neo-btn">
-        <img src="../resources/images/icon-scissors-60.png" height="100" />
+      <div class="game__options">
+        <div class="option neo-btn">
+          <img src="../resources/images/lizard-icon-7.png" height="100" />
+        </div>
+        <div class="option neo-btn">
+          <img src="../resources/images/spock-icon-3.png" height="100" />
+        </div>
       </div>
     </div>
-    <div class="game__options">
-      <div class="option neo-btn">
-        <img src="../resources/images/lizard-icon-7.png" height="100" />
-      </div>
-      <div class="option neo-btn">
-        <img src="../resources/images/spock-icon-3.png" height="100" />
-      </div>
+    <div class="game">
+      <h1>?</h1>
     </div>
   </div>
 </template>
@@ -31,6 +36,10 @@ export default Vue.extend({
 </script>
 
 <style>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
 .game {
   display: flex;
   flex-direction: column;
@@ -41,9 +50,10 @@ export default Vue.extend({
 .game__options {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .option {
-  flex-grow: 1;
+
   margin: 10px;
   display: flex;
   justify-content: center;
