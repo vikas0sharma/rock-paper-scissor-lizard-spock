@@ -1,6 +1,5 @@
 # Rock Paper Scissor Lizard Spock
-[![Deploy](https://github.com/vikas0sharma/rock-paper-scissor-lizard-spock/actions/workflows/deploy.yml/badge.svg)](https://github.com/vikas0sharma/rock-paper-scissor-lizard-spock/actions/workflows/deploy.yml) [![Heroku App Status](http://heroku-shields.herokuapp.com/rock-paper-scissor-lizard-spoc)](https://rock-paper-scissor-lizard-spoc.herokuapp.com)
-
+[![Deploy](https://github.com/vikas0sharma/rock-paper-scissor-lizard-spock/actions/workflows/deploy.yml/badge.svg)](https://github.com/vikas0sharma/rock-paper-scissor-lizard-spock/actions/workflows/deploy.yml)
 
 
 ## Wana know the rules of the Game?
