@@ -5,7 +5,8 @@ namespace RockPaperScissorLizardSpock.Infrastructure.Database
 {
     public interface IGameRepository
     {
-        Task<bool> CreateGame(Game game);
+        Task<string> CreateGame();
         Task<Player[]> GetPlayers(string gameId);
+        Task<Player> AddPlayer(string gameId, string playerName);
     }
 }

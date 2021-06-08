@@ -14,10 +14,6 @@ namespace RockPaperScissorLizardSpock.Controllers
     [Route("[controller]")]
     public class GameController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private readonly ILogger<GameController> logger;
         private readonly IGameRepository gameRepository;
@@ -28,16 +24,21 @@ namespace RockPaperScissorLizardSpock.Controllers
             this.gameRepository = gameRepository;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost("game")]
+        public async Task<IActionResult> CreateGame() => Ok(await gameRepository.CreateGame());
+
+        [HttpPost("game/{gameId}/players")]
+        public async Task<IActionResult> AddPlayer(string gameId, [FromBody] string player)
         {
-            Game game = new Game
-            {
-                Id = Guid.NewGuid().ToShortGuid()
-            };
-            await gameRepository.CreateGame(game);
-            return Ok(game.Id);
+            var p = await gameRepository.AddPlayer(gameId, player);
+            return Ok(p.Id);
         }
+
+        public async Task<IActionResult> UpdatePlayerChoice(string gameId, [FromBody] Player player)
+        {
+            return Ok();
+        }
+
         [HttpGet("players")]
         public async Task<IActionResult> GetPlayers(string gameId)
         {

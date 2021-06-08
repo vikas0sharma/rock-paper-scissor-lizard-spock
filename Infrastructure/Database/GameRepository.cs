@@ -15,10 +15,27 @@ namespace RockPaperScissorLizardSpock.Infrastructure.Database
         {
             this.database = redis.GetDatabase();
         }
-        public async Task<bool> CreateGame(Game game)
+        public async Task<string> CreateGame()
         {
-            var done = await database.StringSetAsync(game.Id, JsonConvert.SerializeObject(game), expiry: TimeSpan.FromDays(1));
-            return done;
+            Game game = new Game
+            {
+                Id = Guid.NewGuid().ToShortGuid()
+            };
+            await database.StringSetAsync(game.Id, JsonConvert.SerializeObject(game), expiry: TimeSpan.FromDays(1));
+
+            return game.Id;
+        }
+        public async Task<Player> AddPlayer(string gameId, string playerName)
+        {
+            var data = await database.StringGetAsync(gameId);
+            if (data.IsNullOrEmpty) return null;
+            
+            var game = JsonConvert.DeserializeObject<Game>(data);
+            var player = game.AddPlayer(playerName);
+
+            await database.StringSetAsync(game.Id, JsonConvert.SerializeObject(game), expiry: TimeSpan.FromDays(1));
+
+            return player;
         }
         public async Task<Player[]> GetPlayers(string gameId)
         {
