@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 
 const routes = [
 	{ path: '/', component: Home, name: 'home' },
-	{ path: '/profile', component: Profile, name: 'profile' },
-	{ path: '/game', component: Game, name: 'game' },
+	{ path: '/game/:game_id', component: Profile, name: 'create-profile' },
+	{ path: '/game/:game_id/players/:player_id', component: Game, name: 'game' },
 
 ];
 

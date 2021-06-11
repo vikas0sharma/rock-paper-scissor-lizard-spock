@@ -10,7 +10,8 @@
   "dependencies": {
     "material-icons": "^0.7.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "@mdi/font": "^5.9.55",

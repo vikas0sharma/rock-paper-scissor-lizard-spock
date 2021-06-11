@@ -1,7 +1,7 @@
 <template>
   <form class="form">
     <div class="rules__form">
-      <button class="red" type="button">
+      <button class="red" type="button" v-on:click="createGame">
         <span class="material-icons">gamepad</span>
         <span class="btn-icon">Play</span>
       </button>
@@ -19,8 +19,16 @@
 
 <script>
 import Vue from "vue";
+import { createGame } from "../services/game-service";
 export default Vue.extend({
   name: "Home",
+  methods: {
+    createGame: async function () {
+      const gameId = await createGame();
+      this.$router.push({ name: "create-profile", params: { game_id: gameId } });
+      console.log(gameId);
+    },
+  },
 });
 </script>
 
@@ -51,12 +59,25 @@ export default Vue.extend({
   font-size: 25px;
 }
 .image {
-    margin: 40px;
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+  margin: 40px;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 </style>

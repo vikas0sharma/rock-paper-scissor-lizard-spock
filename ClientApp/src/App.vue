@@ -3,9 +3,9 @@
     <div class="header">
       <span class="txt"> Rock Paper Scissor Lizard Spock</span>
       <div class="menu__items">
-        <router-link to="/" class="btn material-icons">home</router-link>
-        <router-link to="profile" class="btn material-icons">account_circle</router-link>
-        <router-link to="game" class="btn material-icons">gamepad</router-link>
+        <router-link to="/" ><span class="btn material-icons">home</span></router-link>
+        <!-- <router-link to="profile"><span class="btn material-icons">account_circle</span></router-link>
+        <router-link to="game"><span class="btn material-icons">gamepad</span></router-link> -->
       </div>
     </div>
     <router-view></router-view>
@@ -14,11 +14,9 @@
 
 <script lang="ts" >
 import Vue from "vue";
-import Profile from "./components/Profile.vue";
 
 export default Vue.extend({
-  name: "App",
-  components: { Profile },
+  name: "App"
 });
 </script>
 
