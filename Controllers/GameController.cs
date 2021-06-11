@@ -24,13 +24,13 @@ namespace RockPaperScissorLizardSpock.Controllers
             this.gameRepository = gameRepository;
         }
 
-        [HttpPost("game")]
+        [HttpPost]
         public async Task<IActionResult> CreateGame() => Ok(await gameRepository.CreateGame());
 
-        [HttpPost("game/{gameId}/players")]
-        public async Task<IActionResult> AddPlayer(string gameId, [FromBody] string player)
+        [HttpPost("{gameId}/players")]
+        public async Task<IActionResult> AddPlayer(string gameId, [FromBody] Player player)
         {
-            var p = await gameRepository.AddPlayer(gameId, player);
+            var p = await gameRepository.AddPlayer(gameId, player.Name);
             return Ok(p.Id);
         }
 
