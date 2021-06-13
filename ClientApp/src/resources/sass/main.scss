@@ -99,19 +99,21 @@ button.red {
 	color: dimgray;
 	background-color: #ebecf0;
   }
+
   .neo-btn:hover {
-	transform: scale(1.05);
-	box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white;
+	  transform: scale(1.05);
+	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white;
   }
+
   .neo-btn:active {
-	outline: none;
-	transform: scale(0.95);
-	box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white,
-				4px 4px 10px 0 rgba(0, 0, 0, 0.1) inset, -4px -4px 10px white inset;
+	  outline: none;
+	  transform: scale(0.95);
+	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white,
+		  		4px 4px 10px 0 rgba(0, 0, 0, 0.1) inset, -4px -4px 10px white inset;
   }
   .neo-btn:hover,
   .neo-btn:focus {
-	color: #ae1100;
+	  color: #ae1100;
   }
   :root {
 	--colorMain: #c0c0c0;

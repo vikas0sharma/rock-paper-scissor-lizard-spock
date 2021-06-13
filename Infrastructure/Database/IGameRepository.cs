@@ -8,5 +8,6 @@ namespace RockPaperScissorLizardSpock.Infrastructure.Database
         Task<string> CreateGame();
         Task<Player[]> GetPlayers(string gameId);
         Task<Player> AddPlayer(string gameId, string playerName);
+        Task<Game> UpdatePlayerChoice(string gameId, Player player);
     }
 }

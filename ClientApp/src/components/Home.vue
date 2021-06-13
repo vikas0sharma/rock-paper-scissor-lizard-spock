@@ -32,7 +32,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style scoped>
 .form {
   width: 406px !important;
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RockPaperScissorLizardSpock.Infrastructure.Database;
+using RockPaperScissorLizardSpock.Infrastructure.Notifications;
 using StackExchange.Redis;
 
 namespace RockPaperScissorLizardSpock
@@ -20,6 +21,7 @@ namespace RockPaperScissorLizardSpock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
             // Redis Configuration
             services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
@@ -72,6 +74,7 @@ namespace RockPaperScissorLizardSpock
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<GameHub>("/gamehub");
             });
             app.UseSpaStaticFiles();
             app.UseSpa(configuration: builder =>

@@ -45,7 +45,22 @@ namespace RockPaperScissorLizardSpock.Infrastructure.Database
                 return new Player[] { };
             }
             var game = JsonConvert.DeserializeObject<Game>(data);
-            return game.Players;
+
+            return game.Players
+                .Select(p => new Player { Id = p.Id, Name = p.Name })
+                .ToArray(); // Hide the players choice
+        }
+        public async Task<Game> UpdatePlayerChoice(string gameId, Player player)
+        {
+            var data = await database.StringGetAsync(gameId);
+            if (data.IsNullOrEmpty)
+            {
+                return null;
+            }
+            var game = JsonConvert.DeserializeObject<Game>(data);
+            game.AddPlayerChoice(player.Id, player.Choice);
+            await database.StringSetAsync(game.Id, JsonConvert.SerializeObject(game), expiry: TimeSpan.FromDays(1));
+            return game;
         }
     }
 }
