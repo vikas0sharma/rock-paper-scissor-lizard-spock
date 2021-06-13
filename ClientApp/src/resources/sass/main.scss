@@ -88,33 +88,33 @@ button.red {
   text-shadow: 2px 2px 2px #fff;
 }
 
-.neo-btn {
-	padding: 0.5rem 1.5rem;
-	border: 2px solid rgba(255, 255, 255, 0.3);
-	box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px white;
-	border-radius: 10px;
-	font-family: "Roboto", sans-serif;
-	cursor: pointer;
-	transition: color 0.2s ease-out, transform 0.2s ease-out;
-	color: dimgray;
-	background-color: #ebecf0;
-  }
+// .neo-btn {
+// 	padding: 0.5rem 1.5rem;
+// 	border: 2px solid rgba(255, 255, 255, 0.3);
+// 	box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px white;
+// 	border-radius: 10px;
+// 	font-family: "Roboto", sans-serif;
+// 	cursor: pointer;
+// 	transition: color 0.2s ease-out, transform 0.2s ease-out;
+// 	color: dimgray;
+// 	background-color: #ebecf0;
+//   }
 
-  .neo-btn:hover {
-	  transform: scale(1.05);
-	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white;
-  }
+//   .neo-btn:hover {
+// 	  transform: scale(1.05);
+// 	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white;
+//   }
 
-  .neo-btn:active {
-	  outline: none;
-	  transform: scale(0.95);
-	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white,
-		  		4px 4px 10px 0 rgba(0, 0, 0, 0.1) inset, -4px -4px 10px white inset;
-  }
-  .neo-btn:hover,
-  .neo-btn:focus {
-	  color: #ae1100;
-  }
+//   .neo-btn:active {
+// 	  outline: none;
+// 	  transform: scale(0.95);
+// 	  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1), -4px -4px 10px white,
+// 		  		4px 4px 10px 0 rgba(0, 0, 0, 0.1) inset, -4px -4px 10px white inset;
+//   }
+//   .neo-btn:hover,
+//   .neo-btn:focus {
+// 	  color: #ae1100;
+//   }
   :root {
 	--colorMain: #c0c0c0;
 	--brShadow: -6px 6px 15px rgba(0, 0, 0, 0.5);
@@ -131,4 +131,56 @@ button.red {
 
 	
   }
+
+  //////////////////////////////////////////
+.btn {
+    position: relative;
+    transition: all .2s ease;
+    letter-spacing: .025em;
+    font-size: 1rem;
+    border-color: #e6e7ee;
+    box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #fff;
+}
+.btn:hover {
+  color: #44476a;
+  text-decoration: none;
+}
+.btn:hover {
+    color: #31344b;
+    background-color: #e6e7ee;
+    border-color: #e6e7ee;
+    box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.rounded-bottom {
+  border-bottom-right-radius: .55rem!important;
+  border-bottom-left-radius: .55rem!important;
+}
+.shadow-inset {
+    box-shadow: inset 2px 2px 5px #b8b9be,inset -3px -3px 7px #fff!important;
+}
+.shadow-soft {
+  box-shadow: 6px 6px 12px #b8b9be,-6px -6px 12px #fff!important;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: .0625rem solid rgba(243,247,250,.05);
+  border-radius: .55rem;
+}
+
+.rounded {
+  border-radius: .55rem!important;
+}
+.mt-n6{
+  margin-top: -5rem!important;
+}
   

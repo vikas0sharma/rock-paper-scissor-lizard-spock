@@ -4,21 +4,21 @@
     <div class="game">
       <div class="player">{{ you.name }}</div>
       <div class="game__options">
-        <div class="option neo-btn" v-on:click="updateChoice(1)">
+        <div class="option btn btn-primary rounded-bottom" v-on:click="updateChoice(1)">
           <img src="../resources/images/rock-emoji.png" height="100" />
         </div>
-        <div class="option neo-btn" v-on:click="updateChoice(2)">
+        <div class="option btn btn-primary rounded-bottom" v-on:click="updateChoice(2)">
           <img src="../resources/images/pen-paper-icon-1.png" height="100" />
         </div>
-        <div class="option neo-btn" v-on:click="updateChoice(3)">
+        <div class="option btn btn-primary rounded-bottom" v-on:click="updateChoice(3)">
           <img src="../resources/images/icon-scissors-60.png" height="100" />
         </div>
       </div>
       <div class="game__options">
-        <div class="option neo-btn" v-on:click="updateChoice(4)">
+        <div class="option btn btn-primary rounded-bottom" v-on:click="updateChoice(4)">
           <img src="../resources/images/lizard-icon-7.png" height="100" />
         </div>
-        <div class="option neo-btn" v-on:click="updateChoice(5)">
+        <div class="option btn btn-primary rounded-bottom" v-on:click="updateChoice(5)">
           <img src="../resources/images/spock-icon-3.png" height="100" />
         </div>
       </div>
@@ -27,7 +27,14 @@
       <div class="player">?</div>
       <ul>
         <li v-for="player of opponents" :key="player.id">
-          <div class="neo opponent">
+          <div class="card shadow-soft opponent">
+            <div class="">
+              <div class="profile-image shadow-inset rounded mt-n6">
+                <span class="material-icons" v-bind:style="{ color: playerColor }"
+              >face</span
+            >
+              </div>
+            </div>
             <span class="material-icons" v-bind:style="{ color: playerColor }"
               >face</span
             >
