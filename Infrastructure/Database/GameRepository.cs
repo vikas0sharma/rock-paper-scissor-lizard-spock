@@ -47,7 +47,7 @@ namespace RockPaperScissorLizardSpock.Infrastructure.Database
             var game = JsonConvert.DeserializeObject<Game>(data);
 
             return game.Players
-                .Select(p => new Player { Id = p.Id, Name = p.Name })
+                .Select(p => new Player { Id = p.Id, Name = p.Name})
                 .ToArray(); // Hide the players choice
         }
         public async Task<Game> UpdatePlayerChoice(string gameId, Player player)

@@ -5,7 +5,8 @@
         public string Id { get; set; }
         public string Name { get; set; }
         public Choice Choice { get; set; }
-        public override string ToString() => $"Id: {Id}, Name: {Name}, Choice: {Choice}";
+        public int Score { get; set; } = 0;
+        public override string ToString() => $"Id: {Id}, Name: {Name}, Choice: {Choice}, Score {Score}";
     }
     public enum Choice
     {

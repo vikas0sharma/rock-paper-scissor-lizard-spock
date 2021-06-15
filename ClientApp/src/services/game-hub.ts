@@ -1,9 +1,10 @@
 import { HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 import { Player } from '../models/player';
+import { Result } from '../models/result';
 
 const setUpSignalRConnection = async (gameId: string,
 	onPlayersUpdated: (players: Player[]) => void,
-	onWinnerChanged: (player: Player) => void) => {
+	onWinnerChanged: (result: Result) => void) => {
 	debugger;
 	const connection = new HubConnectionBuilder()
 		.withUrl('/gamehub')
@@ -19,8 +20,9 @@ const setUpSignalRConnection = async (gameId: string,
 		onPlayersUpdated(players);
 	});
 
-	connection.on("WinnerSelected", (winner: Player) => {
-		onWinnerChanged(winner);
+	connection.on("WinnerSelected", (result: Result) => {
+		console.log(result);
+		onWinnerChanged(result);
 	})
 
 	try {

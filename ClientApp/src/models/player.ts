@@ -1,7 +1,8 @@
 export interface Player {
 	id: string,
 	name: string,
-	choice : Choice
+	choice : Choice,
+	score:number;
 }
 
 export enum Choice {

@@ -25,7 +25,10 @@ export default Vue.extend({
   methods: {
     createGame: async function () {
       const gameId = await createGame();
-      this.$router.push({ name: "create-profile", params: { game_id: gameId } });
+      this.$router.push({
+        name: "create-profile",
+        params: { game_id: gameId },
+      });
       console.log(gameId);
     },
   },
@@ -33,9 +36,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.form {
-  width: 406px !important;
-}
 .rules__form {
   display: flex;
   align-items: center;
@@ -59,10 +59,11 @@ export default Vue.extend({
   font-size: 25px;
 }
 .image {
-  margin: 40px;
+  margin: 40px 0px 40px;
   -webkit-animation: spin 4s linear infinite;
   -moz-animation: spin 4s linear infinite;
   animation: spin 4s linear infinite;
+  width: 90%;
 }
 @-moz-keyframes spin {
   100% {

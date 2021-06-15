@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1>Winner: {{ winner.name ? winner.name : "" }}</h1>
+    <div class="main">
+      <h1>Winner: {{ result.winner ? result.winner : "" }}</h1>
+      <h2>{{ result.win }}</h2>
+      <h3>Round: {{ result.round }}</h3>
+    </div>
     <div class="container">
       <div class="game">
         <div class="player">{{ you.name }}</div>
@@ -46,21 +50,7 @@
             <div class="card shadow-soft opponent">
               <h2>{{ player.name }}</h2>
               <hr />
-              <span class="fs-2">Score: 5</span>
-              <!-- <div class="player-avatar shadow-inset rounded">
-              <span
-                class="material-icons fs-3"
-                v-bind:style="{ color: playerColor() }"
-                >face</span
-              >
-              <span class="fs-3">{{ player.name }}</span>
-            </div>
-            <div class="shadow-inset player-avatar rounded mt-10 fs-2">
-              vikas
-            </div>
-            <div class="shadow-inset rounded mt-10 fs-2">
-              vikas
-            </div> -->
+              <span class="fs-2">Score: {{ getScore(player.id) }}</span>
             </div>
           </li>
         </ul>
@@ -73,6 +63,7 @@
 import Vue from "vue";
 import setUpSignalRConnection from "../services/game-hub";
 import { Choice, Player } from "../models/player";
+import { Result } from "../models/result";
 import { getPlayers, updatePlayerChoice } from "../services/game-service";
 
 export default Vue.extend({
@@ -95,7 +86,7 @@ export default Vue.extend({
     gameId: "",
     playerId: "",
     you: <Player>{},
-    winner: <Player>{},
+    result: <Result>{},
   }),
   mounted: async function () {
     this.gameId = this.$route.params.game_id;
@@ -113,8 +104,8 @@ export default Vue.extend({
     onplayersUpdated: function (players: Player[]) {
       this.players = players;
     },
-    onWinnerChanged: function (winner: Player) {
-      this.winner = winner;
+    onWinnerChanged: function (result: Result) {
+      this.result = result;
     },
     updateChoice: async function (choice: Choice) {
       this.you.choice = choice;
@@ -122,8 +113,11 @@ export default Vue.extend({
     },
     playerColor: function () {
       const rnd = Math.floor(Math.random() * this.colors.length);
-      console.log(this.colors);
       return this.colors[rnd];
+    },
+    getScore: function (id: string) {
+      debugger;
+      return this.result.choices ? this.result.choices[id].score : 0;
     },
   },
   computed: {
@@ -142,7 +136,7 @@ ul {
 .container {
   display: flex;
   justify-content: space-around;
-  justify-self:center;
+  justify-self: center;
   flex-flow: wrap;
   align-content: center;
 }
@@ -189,5 +183,11 @@ ul {
 }
 .mt-10 {
   margin-top: 10px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 </style>

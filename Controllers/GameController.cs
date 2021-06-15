@@ -45,7 +45,7 @@ namespace RockPaperScissorLizardSpock.Controllers
         public async Task<IActionResult> UpdatePlayerChoice(string gameId, [FromBody] Player player)
         {
             var game = await gameRepository.UpdatePlayerChoice(gameId, player);
-            await hub.Clients.Group(gameId).SendAsync("WinnerSelected", game.Winner);
+            await hub.Clients.Group(gameId).SendAsync("WinnerSelected", game.Result);
 
             return Ok();
         }
