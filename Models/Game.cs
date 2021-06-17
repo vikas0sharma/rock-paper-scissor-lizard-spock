@@ -37,7 +37,7 @@ namespace RockPaperScissorLizardSpock.Models
         }
         public void ChooseWinner(Player[] players)
         {
-            Result.Winner = "";
+            Result.Winner = ""; 
             Result.Win = "";
             Result.Choices = null;
 
@@ -168,7 +168,7 @@ namespace RockPaperScissorLizardSpock.Models
             Result.Round++;
             Result.Choices = Players.Select(p => new { p.Id, p.Choice, p.Score }).ToDictionary(p => p.Id, p => new ScoreResult { Choice = p.Choice, Score = p.Score });
 
-            Players = Players.Select(p => new Player { Id = p.Id, Name = p.Name }).ToArray();
+            Players = Players.Select(p => new Player { Id = p.Id, Name = p.Name, Score = p.Score }).ToArray();
         }
 
         public override string ToString() => $"Id: {Id}, Players: {Players}";

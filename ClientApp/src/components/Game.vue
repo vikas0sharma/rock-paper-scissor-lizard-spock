@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="main">
-      <h1>Winner: {{ result.winner ? result.winner : "" }}</h1>
-      <h2>{{ result.win }}</h2>
-      <h3>Round: {{ result.round }}</h3>
+      <h1>Round: {{ result.round }}</h1>
+      <h2>Winner: {{ result.winner ? result.winner : "" }}</h2>
+      <h3>{{ result.win }}</h3>
     </div>
     <div class="container">
       <div class="game">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="game">
-        <div class="player">?</div>
+        <div class="player">Opponents</div>
         <ul>
           <li v-for="player of opponents" :key="player.id">
             <div class="card shadow-soft opponent">
@@ -116,8 +116,12 @@ export default Vue.extend({
       return this.colors[rnd];
     },
     getScore: function (id: string) {
-      debugger;
+      // @ts-ignore
       return this.result.choices ? this.result.choices[id].score : 0;
+    },
+    getChoice: function (id: string) {
+      // @ts-ignore
+      return this.result.choices ? this.result.choices[id].choice : 0;
     },
   },
   computed: {
