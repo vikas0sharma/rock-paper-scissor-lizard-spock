@@ -4,6 +4,7 @@
       <h1>Round: {{ result.round }}</h1>
       <h2>Winner: {{ result.winner ? result.winner : "" }}</h2>
       <h3>{{ result.win }}</h3>
+      <div style="margin-right:50px; display: flex; align-items: center;width: 100%;justify-content: flex-end;"><span style="color:blue" class="material-icons btn btn-primary rounded-bottom">share</span></div>
     </div>
     <div class="container">
       <div class="game">

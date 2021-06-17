@@ -1,7 +1,10 @@
 <template>
   <form class="form">
     <div class="rules__form">
-      <button class="red" type="button" v-on:click="createGame">
+      <div v-if="progress" class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <button v-else class="red" type="button" v-on:click="createGame">
         <span class="material-icons">gamepad</span>
         <span class="btn-icon">Play</span>
       </button>
@@ -22,14 +25,21 @@ import Vue from "vue";
 import { createGame } from "../services/game-service";
 export default Vue.extend({
   name: "Home",
+  data: () => ({
+    progress: false,
+  }),
   methods: {
     createGame: async function () {
-      const gameId = await createGame();
-      this.$router.push({
-        name: "create-profile",
-        params: { game_id: gameId },
-      });
-      console.log(gameId);
+      this.progress = true;
+      try {
+        const gameId = await createGame();
+        this.$router.push({
+          name: "create-profile",
+          params: { game_id: gameId },
+        });
+      } finally {
+        this.progress = false;
+      }
     },
   },
 });
@@ -79,6 +89,57 @@ export default Vue.extend({
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+.progress {
+  margin-top: 50px;
+  width: 10em;
+  height: 0.6rem;
+  border: 0.0625rem solid #d1d9e6;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff;
+}
+.progress-bar {
+  height: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ecf0f3;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e6e7ee;
+  transition: width 0.6s ease;
+  box-shadow: none;
+  border-radius: 0.55rem;
+  background-color: #0056b3 !important;
+  animation: 3s ease 0s 1 normal none running animate-positive;
+  opacity: 1;
+  background-image: linear-gradient(
+    45deg,
+    rgba(236, 240, 243, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(236, 240, 243, 0.15) 50%,
+    rgba(236, 240, 243, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation-duration: 1s;
+  animation-name: changewidth;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes changewidth {
+  from {
+    width: 0em;
+  }
+
+  to {
+    width: 100%;
   }
 }
 </style>
