@@ -5,7 +5,6 @@ import { Result } from '../models/result';
 const setUpSignalRConnection = async (gameId: string,
 	onPlayersUpdated: (players: Player[]) => void,
 	onWinnerChanged: (result: Result) => void) => {
-	debugger;
 	const connection = new HubConnectionBuilder()
 		.withUrl('/gamehub')
 		.withAutomaticReconnect()

@@ -4,17 +4,6 @@
       <h1>Round: {{ result.round }}</h1>
       <h2>Winner: {{ result.winner ? result.winner : "" }}</h2>
       <h3>{{ result.win }}</h3>
-      <div
-        style="
-          margin-right: 50px;
-          display: flex;
-          align-items: center;
-          width: 100%;
-          justify-content: flex-end;
-        "
-      >
-        <Copy/>
-      </div>
     </div>
     <div class="container">
       <div class="game">
@@ -76,10 +65,8 @@ import setUpSignalRConnection from "../services/game-hub";
 import { Choice, Player } from "../models/player";
 import { Result } from "../models/result";
 import { getPlayers, updatePlayerChoice } from "../services/game-service";
-import Copy from "./Copy.vue";
 
 export default Vue.extend({
-  components: { Copy },
   name: "Game",
   data: () => ({
     players: <Player[]>[],

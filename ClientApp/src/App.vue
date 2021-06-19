@@ -3,9 +3,10 @@
     <div class="header">
       <span class="txt"> Rock Paper Scissor Lizard Spock</span>
       <div class="menu__items">
-        <router-link to="/" ><span class="btn material-icons">home</span></router-link>
-        <!-- <router-link to="profile"><span class="btn material-icons">account_circle</span></router-link>
-        <router-link to="game"><span class="btn material-icons">gamepad</span></router-link> -->
+        <span v-if="!isHome" v-on:click="gotToHome" class="btn material-icons"
+          >home</span
+        >
+        <Copy v-if="isGameOn" />
       </div>
     </div>
     <router-view></router-view>
@@ -14,9 +15,32 @@
 
 <script lang="ts" >
 import Vue from "vue";
+import Copy from "./components/Copy.vue";
 
 export default Vue.extend({
-  name: "App"
+  components: { Copy },
+  name: "App",
+  data: () => ({
+    isGameOn: false,
+    isHome: true,
+  }),
+  mounted: function () {
+    this.isGameOn = this.$route.name === "game";
+    this.isHome = this.$route.name === "home";
+  },
+  watch: {
+    $route: function (route) {
+      this.isGameOn = route && route.name === "game";
+      this.isHome = route && route.name === "home";
+    },
+  },
+  methods: {
+    gotToHome: function () {
+      this.$router.push({
+        name: "home",
+      });
+    },
+  },
 });
 </script>
 

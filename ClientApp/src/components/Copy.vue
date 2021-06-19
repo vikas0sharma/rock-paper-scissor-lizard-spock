@@ -6,7 +6,6 @@
       v-on:click="copy"
       >share</span
     >
-    <div class="tooltip-inner">Share game link</div>
   </div>
 </template>
 
