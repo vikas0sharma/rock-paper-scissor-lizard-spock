@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static RockPaperScissorLizardSpock.Models.Choice;
 
 namespace RockPaperScissorLizardSpock.Models
 {
@@ -28,131 +29,47 @@ namespace RockPaperScissorLizardSpock.Models
         {
             var player = Players.FirstOrDefault(p => p.Id == playerId);
             player.Choice = choice;
-            GetWinner();
+            ChooseWinner();
         }
 
-        public void GetWinner()
+        public void ChooseWinner()
         {
-            ChooseWinner(Players);
-        }
-        public void ChooseWinner(Player[] players)
-        {
-            Result.Winner = ""; 
+            Result.Winner = "";
             Result.Win = "";
             Result.Choices = null;
 
-            if (players.Any(p => p.Choice == Choice.Unknown)) return;
+            if (Players.Any(p => p.Choice == Unknown)) return;
             List<string> resultText = new List<string>();
-            Player winner = players[0];
-            for (int j = 1; j < players.Length; j++)
+            Player winner = Players[0];
+            for (int j = 1; j < Players.Length; j++)
             {
+                string result = "";
 
-                if (players[j].Choice == Choice.Rock)
+                (winner, result) = (Players[j].Choice, winner.Choice) switch
                 {
-                    if (winner.Choice == Choice.Lizard)
-                    {
-                        resultText.Add($"{players[j].Choice} chrushes {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Scissor)
-                    {
-                        resultText.Add($"{players[j].Choice} smashes {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Spock)
-                    {
-                        resultText.Add($"{winner.Choice} vaporizes {players[j].Choice}");
-                    }
-                    else if (winner.Choice == Choice.Paper)
-                    {
-                        resultText.Add($"{winner.Choice} covers {players[j].Choice}");
-                    }
-
-                }
-                else if (players[j].Choice == Choice.Paper)
-                {
-                    if (winner.Choice == Choice.Rock)
-                    {
-                        resultText.Add($"{players[j].Choice} covers {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Spock)
-                    {
-                        resultText.Add($"{players[j].Choice} disproves {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Scissor)
-                    {
-                        resultText.Add($"{winner.Choice} cuts {players[j].Choice}");
-                    }
-                    else if (winner.Choice == Choice.Lizard)
-                    {
-                        resultText.Add($"{winner.Choice} eats {players[j].Choice}");
-                    }
-                }
-                else if (players[j].Choice == Choice.Scissor)
-                {
-                    if (winner.Choice == Choice.Lizard)
-                    {
-                        resultText.Add($"{players[j].Choice} decapitates {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Paper)
-                    {
-                        resultText.Add($"{players[j].Choice} cuts {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Spock)
-                    {
-                        resultText.Add($"{winner.Choice} smashes {players[j].Choice}");
-                    }
-                    else if (winner.Choice == Choice.Rock)
-                    {
-                        resultText.Add($"{winner.Choice} smashes {players[j].Choice}");
-                    }
-                }
-                else if (players[j].Choice == Choice.Lizard)
-                {
-                    if (winner.Choice == Choice.Paper)
-                    {
-                        resultText.Add($"{players[j].Choice} eats {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Spock)
-                    {
-                        resultText.Add($"{players[j].Choice} poisons {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Rock)
-                    {
-                        resultText.Add($"{winner.Choice} smashes {players[j].Choice}");
-                    }
-                    else if (winner.Choice == Choice.Scissor)
-                    {
-                        resultText.Add($"{winner.Choice} decapitates {players[j].Choice}");
-                    }
-                }
-                else if (players[j].Choice == Choice.Spock)
-                {
-                    if (winner.Choice == Choice.Scissor)
-                    {
-                        resultText.Add($"{players[j].Choice} smashes {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Rock)
-                    {
-                        resultText.Add($"{players[j].Choice} vaporizes {winner.Choice}");
-                        winner = players[j];
-                    }
-                    else if (winner.Choice == Choice.Paper)
-                    {
-                        resultText.Add($"{winner.Choice} disproves {players[j].Choice}");
-                    }
-                    else if (winner.Choice == Choice.Lizard)
-                    {
-                        resultText.Add($"{winner.Choice} poisons {players[j].Choice}");
-                    }
-                }
+                    (Rock, Lizard) => (Players[j], $"{Rock} crushes {Lizard}"),
+                    (Rock, Scissor) => (Players[j], $"{Rock} smashes {Scissor}"),
+                    (Rock, Spock) => (winner, $"{Spock} vaporizes {Rock}"),
+                    (Rock, Paper) => (winner, $"{Paper} covers {Rock}"),
+                    (Paper, Rock) => (Players[j], $"{Paper} covers {Rock}"),
+                    (Paper, Spock) => (Players[j], $"{Paper} disproves {Spock}"),
+                    (Paper, Scissor) => (winner, $"{Scissor} cuts {Paper}"),
+                    (Paper, Lizard) => (winner, $"{Lizard} eats {Paper}"),
+                    (Scissor, Lizard) => (Players[j], $"{Scissor} decapitates {Lizard}"),
+                    (Scissor, Paper) => (Players[j], $"{Paper} cuts {Scissor}"),
+                    (Scissor, Spock) => (winner, $"{Spock} smashes {Scissor}"),
+                    (Scissor, Rock) => (winner, $"{Rock} crushes {Scissor}"),
+                    (Lizard, Paper) => (Players[j], $"{Lizard} eats {Paper}"),
+                    (Lizard, Spock) => (Players[j], $"{Lizard} poisons {Spock}"),
+                    (Lizard, Rock) => (winner, $"{Rock} smashes {Lizard}"),
+                    (Lizard, Scissor) => (winner, $"{Scissor} decapitates {Lizard}"),
+                    (Spock, Scissor) => (Players[j], $"{Spock} smashes {Scissor}"),
+                    (Spock, Rock) => (Players[j], $"{Spock} vaporizes {Rock}"),
+                    (Spock, Paper) => (winner, $"{Paper} disproves {Spock}"),
+                    (Spock, Lizard) => (winner, $"{Lizard} poisons {Spock}"),
+                    (_, _) => throw new InvalidOperationException("Invalid Choices")
+                };
+                resultText.Add(result);
             }
             var ties = Players.Where(p => p.Choice == winner.Choice);
             if (ties.Count() > 1)

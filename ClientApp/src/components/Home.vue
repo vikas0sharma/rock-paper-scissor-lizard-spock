@@ -11,7 +11,7 @@
       <img class="image" src="../resources/images/main.png" />
       <h1>Rules</h1>
       <label class="rules__text">
-        "Scissors decapitate Scissors cuts paper, paper covers rock, rock
+        "Scissors decapitate lizard, scissors cuts paper, paper covers rock, rock
         crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors
         decapitates lizard, lizard eats paper, paper disproves Spock, Spock
         vaporizes rock, and as it always has, rock crushes scissors."
